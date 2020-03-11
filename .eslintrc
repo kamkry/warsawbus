@@ -43,6 +43,7 @@
     "react/jsx-filename-extension": "off",
     "import/extensions": "off",
     "import/no-unresolved": "off",
-    "react/jsx-props-no-spreading": "warn"
+    "react/jsx-props-no-spreading": "warn",
+    "@typescript-eslint/explicit-function-return-type":"off"
   }
 }
