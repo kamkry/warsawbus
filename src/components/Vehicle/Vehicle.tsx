@@ -16,8 +16,9 @@ const Label = styled.div`
 `;
 
 export interface VehicleProps {
+  number?: string;
   line: string;
-  updateDate?: string;
+  time?: string;
   latitude: number;
   longitude: number;
   rotate: number;
