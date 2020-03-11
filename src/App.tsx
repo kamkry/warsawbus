@@ -1,5 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+import Map from './components/Map';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after{
@@ -16,6 +17,7 @@ const App: React.FC = () => {
   return (
     <>
       <GlobalStyle />
+      <Map />
     </>
   );
 };
