@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import MapBox, { Marker } from 'react-map-gl';
+import React, { useState } from 'react';
+import MapBox from 'react-map-gl';
 import Vehicle from '../Vehicle';
 
 const Map: React.FC = () => {
