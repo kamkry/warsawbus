@@ -1,6 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import Map from './components/Map';
+import Map from 'components/Map';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after{
