@@ -1,8 +1,10 @@
 {
+  "env": {
+    "LOCATION_URL": "@location_url"
+  },
   "build": {
     "env": {
-      "REACT_APP_MAP_TOKEN": "@map_token",
-      "LOCATION_URL": "@location_url"
+      "REACT_APP_MAP_TOKEN": "@map_token"
     }
   }
 }
