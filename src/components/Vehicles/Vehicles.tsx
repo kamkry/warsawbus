@@ -5,12 +5,15 @@ import { VehicleProps } from '../Vehicle/Vehicle';
 
 const Vehicles: React.FC = () => {
   const [data, setData] = useState([]);
+  const getData = () => {
+    fetch('/api/locations?type=1&line=109')
+      .then(res => res.json())
+      .then(setData);
+  };
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      fetch('/api/locations?type=1&line=109')
-        .then(res => res.json())
-        .then(setData);
-    }, 5_000);
+    getData();
+    const interval = setInterval(getData, 5_000);
     return () => clearInterval(interval);
   }, []);
   if (!data) {
