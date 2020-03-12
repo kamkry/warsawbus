@@ -55,10 +55,9 @@ const Buses: React.FC = () => {
   }, [lastData]);
 
   useEffect(() => {
-    update();
     const interval = setInterval(update, 10_000);
     return () => clearInterval(interval);
-  }, [data, lastData, update]);
+  }, [update]);
 
   if (!data) {
     return null;

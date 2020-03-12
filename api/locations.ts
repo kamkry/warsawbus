@@ -14,5 +14,6 @@ export default async (req: NowRequest, res: NowResponse) => {
     longitude: loc.Lon,
     latitude: loc.Lat,
   }));
+  res.setHeader('Set-Cookie', 'HttpOnly;Secure;SameSite=Strict');
   res.send(locationsMapped);
 };

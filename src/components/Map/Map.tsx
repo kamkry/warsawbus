@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MapBox from 'react-map-gl';
-import Vehicles from '../Buses';
+import Buses from '../Buses';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const Map: React.FC = () => {
   const [viewport, setViewport] = useState({
@@ -22,7 +23,7 @@ const Map: React.FC = () => {
       onViewportChange={setViewport}
       mapboxApiAccessToken={process.env.REACT_APP_MAP_TOKEN}
     >
-      <Vehicles />
+      <Buses />
     </MapBox>
   );
 };
