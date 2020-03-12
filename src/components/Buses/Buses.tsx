@@ -1,8 +1,8 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
-import Vehicle from '../Vehicle';
-import { VehicleProps } from '../Vehicle/Vehicle';
+import Bus from '../Bus';
+import { VehicleProps } from '../Bus/Bus';
 
 function positionNotChanged(vehicle: VehicleProps, lastVehicle: VehicleProps) {
   return (
@@ -41,7 +41,7 @@ function updateProperties(lastData: VehicleProps[]) {
   });
 }
 
-const Vehicles: React.FC = () => {
+const Buses: React.FC = () => {
   const [data, setData] = useState([] as VehicleProps[]);
   const [lastData, setLastData] = useState([] as VehicleProps[]);
 
@@ -56,7 +56,7 @@ const Vehicles: React.FC = () => {
 
   useEffect(() => {
     update();
-    const interval = setInterval(update, 1_000);
+    const interval = setInterval(update, 10_000);
     return () => clearInterval(interval);
   }, [data, lastData, update]);
 
@@ -67,7 +67,7 @@ const Vehicles: React.FC = () => {
     <>
       {data.map((vehicle: VehicleProps) => {
         return (
-          <Vehicle
+          <Bus
             key={uuid()}
             line="109"
             latitude={vehicle.latitude}
@@ -79,4 +79,4 @@ const Vehicles: React.FC = () => {
     </>
   );
 };
-export default memo(Vehicles);
+export default memo(Buses);

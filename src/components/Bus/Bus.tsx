@@ -24,7 +24,7 @@ export interface VehicleProps {
   rotate: number;
 }
 
-const Vehicle: React.FC<VehicleProps> = ({
+const Bus: React.FC<VehicleProps> = ({
   line,
   latitude,
   longitude,
@@ -45,4 +45,4 @@ const Vehicle: React.FC<VehicleProps> = ({
   );
 };
 
-export default Vehicle;
+export default Bus;
