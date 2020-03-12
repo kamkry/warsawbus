@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MapBox from 'react-map-gl';
-import Vehicles from '../Vehicles';
+import Vehicles from '../Buses';
 
 const Map: React.FC = () => {
   const [viewport, setViewport] = useState({
