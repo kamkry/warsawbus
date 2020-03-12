@@ -6,5 +6,13 @@ export default async (req: NowRequest, res: NowResponse) => {
   if (!type) res.status(400);
   const { LOCATION_URL } = process.env;
   const locations = await axios(`${LOCATION_URL}&type=${type}&line=${line}`);
-  res.send(locations.data.result);
+
+  const locationsMapped = locations?.data?.result?.map((loc: any) => ({
+    number: loc.VehicleNumber,
+    line: loc.Lines,
+    time: loc.Time,
+    longitude: loc.Lon,
+    latitude: loc.Lat,
+  }));
+  res.send(locationsMapped);
 };

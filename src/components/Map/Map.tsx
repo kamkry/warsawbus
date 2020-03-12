@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MapBox from 'react-map-gl';
-import Vehicle from '../Vehicle';
+import Vehicles from '../Vehicles';
 
 const Map: React.FC = () => {
   const [viewport, setViewport] = useState({
@@ -22,12 +22,7 @@ const Map: React.FC = () => {
       onViewportChange={setViewport}
       mapboxApiAccessToken={process.env.REACT_APP_MAP_TOKEN}
     >
-      <Vehicle
-        line="197"
-        latitude={52.223739}
-        longitude={20.994196}
-        rotate={90}
-      />
+      <Vehicles />
     </MapBox>
   );
 };
