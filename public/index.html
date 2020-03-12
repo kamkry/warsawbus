@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Security-Policy" content="
-                            default-src * data: blob: ws: wss: gap://ready file://*;
-                            style-src * 'unsafe-inline';
-                            connect-src * ws: wss:;">
+                            default-src *; style-src 'self' http://* 'unsafe-inline';
+                            script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'"
+    />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
