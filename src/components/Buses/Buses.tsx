@@ -2,48 +2,53 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 import Bus from '../Bus';
-import { VehicleProps } from '../Bus/Bus';
+import { BusProps } from '../Bus/Bus';
 
-function positionNotChanged(vehicle: VehicleProps, lastVehicle: VehicleProps) {
+function positionNotChanged(current: BusProps, previous: BusProps) {
   return (
-    vehicle.longitude !== lastVehicle.longitude &&
-    vehicle.latitude !== lastVehicle.latitude
+    current.longitude !== previous.longitude &&
+    current.latitude !== previous.latitude
   );
 }
-function hasTheSameId(vehicle: VehicleProps) {
-  return (v: VehicleProps) => vehicle.number === v.number;
+
+function hasTheSameId(bus: BusProps) {
+  return (b: BusProps) => bus.number === b.number;
 }
 
-function calculateRotation(vehicle: VehicleProps, lastVehicle: VehicleProps) {
+function calculateRotation(bus: BusProps, lastBus: BusProps) {
   return (
     (Math.atan2(
-      vehicle.longitude - lastVehicle.longitude,
-      vehicle.latitude - lastVehicle.latitude
+      bus.longitude - lastBus.longitude,
+      bus.latitude - lastBus.latitude
     ) *
       180) /
     Math.PI
   );
 }
 
-function updateProperties(lastData: VehicleProps[]) {
+/**
+ * Calls the server and updates buses' rotation based on position change
+ * @param lastData - data from the previous call
+ */
+function updateProperties(lastData: BusProps[]) {
   return axios('/api/locations?type=1&line=109').then(res => {
-    return res.data.map((vehicle: VehicleProps) => {
-      const lastVehicle = lastData.filter(hasTheSameId(vehicle))[0];
-      if (!lastVehicle) return vehicle;
-      const newVehicle = { ...vehicle };
-      if (positionNotChanged(vehicle, lastVehicle)) {
-        newVehicle.rotate = calculateRotation(vehicle, lastVehicle);
+    return res.data.map((vehicle: BusProps) => {
+      const lastBus = lastData.filter(hasTheSameId(vehicle))[0];
+      if (!lastBus) return vehicle;
+      const newBus = { ...vehicle };
+      if (positionNotChanged(vehicle, lastBus)) {
+        newBus.rotate = calculateRotation(vehicle, lastBus);
       } else {
-        newVehicle.rotate = lastVehicle.rotate;
+        newBus.rotate = lastBus.rotate;
       }
-      return newVehicle;
+      return newBus;
     });
   });
 }
 
 const Buses: React.FC = () => {
-  const [data, setData] = useState([] as VehicleProps[]);
-  const [lastData, setLastData] = useState([] as VehicleProps[]);
+  const [data, setData] = useState([] as BusProps[]);
+  const [lastData, setLastData] = useState([] as BusProps[]);
 
   const update = useCallback(() => {
     updateProperties(lastData).then(newData => {
@@ -55,6 +60,10 @@ const Buses: React.FC = () => {
   }, [lastData]);
 
   useEffect(() => {
+    update();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
     const interval = setInterval(update, 10_000);
     return () => clearInterval(interval);
   }, [update]);
@@ -64,7 +73,7 @@ const Buses: React.FC = () => {
   }
   return (
     <>
-      {data.map((vehicle: VehicleProps) => {
+      {data.map((vehicle: BusProps) => {
         return (
           <Bus
             key={uuid()}

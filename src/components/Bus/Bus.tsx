@@ -15,7 +15,7 @@ const Label = styled.div`
   transform: translateY(-100%) translateX(-20%);
 `;
 
-export interface VehicleProps {
+export interface BusProps {
   number?: string;
   line: string;
   time?: string;
@@ -24,12 +24,7 @@ export interface VehicleProps {
   rotate: number;
 }
 
-const Bus: React.FC<VehicleProps> = ({
-  line,
-  latitude,
-  longitude,
-  rotate,
-}) => {
+const Bus: React.FC<BusProps> = ({ line, latitude, longitude, rotate }) => {
   return (
     <Marker
       latitude={latitude}
