@@ -2,6 +2,7 @@ import React from 'react';
 import { Marker } from 'react-map-gl';
 import { ReactComponent as Arrow } from 'assets/arrow.svg';
 import styled from 'styled-components';
+import { BusProps } from './index';
 
 const StyledArrow = styled.svg`
   cursor: pointer;
@@ -15,15 +16,6 @@ const Label = styled.div`
   color: white;
   transform: translateY(-100%) translateX(-20%);
 `;
-
-export interface BusProps {
-  number?: string;
-  line: string;
-  time?: string;
-  latitude: number;
-  longitude: number;
-  rotate: number;
-}
 
 const Bus: React.FC<BusProps> = ({ line, latitude, longitude, rotate }) => {
   return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import Map from 'components/Map';
+import SearchPanel from './components/SearchPanel';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after{
@@ -17,6 +18,7 @@ const App: React.FC = () => {
   return (
     <>
       <GlobalStyle />
+      <SearchPanel />
       <Map />
     </>
   );
