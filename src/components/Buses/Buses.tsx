@@ -26,47 +26,48 @@ function calculateRotation(bus: BusProps, lastBus: BusProps) {
   );
 }
 
+function getBusesLocation() {
+  return axios('/api/locations?type=1&line=109').then(res => res.data);
+}
 /**
  * Calls the server and updates buses' rotation based on position change
- * @param lastData - data from the previous call
+ * @param currentData - data from the latest call
+ * @param previousData - data from the previous call
  */
-function updateProperties(lastData: BusProps[]) {
-  return axios('/api/locations?type=1&line=109').then(res => {
-    return res.data.map((vehicle: BusProps) => {
-      const lastBus = lastData.filter(hasTheSameId(vehicle))[0];
-      if (!lastBus) return vehicle;
-      const newBus = { ...vehicle };
-      if (positionNotChanged(vehicle, lastBus)) {
-        newBus.rotate = calculateRotation(vehicle, lastBus);
-      } else {
-        newBus.rotate = lastBus.rotate;
-      }
-      return newBus;
-    });
+function updateProperties(currentData: BusProps[], previousData: BusProps[]) {
+  return currentData.map(bus => {
+    const lastBus = previousData.filter(hasTheSameId(bus))[0];
+    if (!lastBus) return bus;
+    const newBus = { ...bus };
+    if (positionNotChanged(bus, lastBus)) {
+      newBus.rotate = calculateRotation(bus, lastBus);
+    } else {
+      newBus.rotate = lastBus.rotate;
+    }
+    return newBus;
   });
 }
 
 const Buses: React.FC = () => {
   const [data, setData] = useState([] as BusProps[]);
-  const [lastData, setLastData] = useState([] as BusProps[]);
+  const [previousData, setPreviousData] = useState([] as BusProps[]);
 
-  const update = useCallback(() => {
-    updateProperties(lastData).then(newData => {
-      setData(old => {
-        setLastData(old);
-        return newData;
+  useEffect(() => {
+    const update = () => {
+      getBusesLocation().then(newData => {
+        const updated = updateProperties(newData, previousData);
+        setData(current => {
+          setPreviousData(current);
+          return updated;
+        });
       });
-    });
-  }, [lastData]);
-
-  useEffect(() => {
-    update();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    const interval = setInterval(update, 10_000);
+    };
+    if (!previousData.length) {
+      update();
+    }
+    const interval = setInterval(update, 5_000);
     return () => clearInterval(interval);
-  }, [update]);
+  }, [previousData]);
 
   if (!data) {
     return null;

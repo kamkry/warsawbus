@@ -9,6 +9,7 @@ const StyledArrow = styled.svg`
   stroke: none;
   transform: rotate(${({ rotate }) => rotate}deg);
 `;
+
 const Label = styled.div`
   position: absolute;
   color: white;
