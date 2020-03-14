@@ -6,9 +6,9 @@ interface BarProps {
   open: boolean;
 }
 const StyledBar = styled.div<BarProps>`
-  width: ${({ open }) => (open ? 16 : 4)}rem;
-  background-color: white;
-  transition: width 0.2s ease-out;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const Button = styled.button`
@@ -21,18 +21,35 @@ const Button = styled.button`
   font: inherit;
   cursor: pointer;
 `;
+const InputWrapper = styled.div<BarProps>`
+  height: 4rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+`;
+
+const SearchInput = styled.input<BarProps>`
+  width: ${({ open }) => (open ? '16rem' : '0')};
+  visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
+  transition: width 0.2s ease-out;
+  font-size: 1.3rem;
+  border: 0;
+`;
 
 const StyledSearchIcon = styled(SearchIcon)`
   transform: scale(1.3);
 `;
 
 const SearchBar = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   return (
     <StyledBar open={open}>
       <Button onClick={() => setOpen(!open)}>
         <StyledSearchIcon />
       </Button>
+      <InputWrapper open={open}>
+        <SearchInput placeholder="Wpisz linię..." open={open} />
+      </InputWrapper>
     </StyledBar>
   );
 };
