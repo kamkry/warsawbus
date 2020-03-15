@@ -1,8 +1,7 @@
 import React, { memo, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
-import { BusProps } from 'components/Bus';
-import Bus from '../Bus';
+import Bus, { BusProps } from 'components/Bus';
 
 function positionNotChanged(current: BusProps, previous: BusProps) {
   return (
