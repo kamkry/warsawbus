@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { usePanelContext } from 'contexts/SearchPanelContext';
 import BusAccordion from 'components/BusAccordion';
+import { LinesProvider } from 'contexts/LinesContext';
 
 const Container = styled.div<{ open: boolean }>`
   height: calc(100vh - 6rem);
@@ -14,8 +15,10 @@ const LineSection: React.FC = () => {
   const [open] = usePanelContext();
   return (
     <Container open={open}>
-      <BusAccordion title="Autobusy" />
-      <BusAccordion title="Tramwaje" />
+      <LinesProvider>
+        <BusAccordion title="Autobusy" />
+        <BusAccordion title="Tramwaje" />
+      </LinesProvider>
     </Container>
   );
 };

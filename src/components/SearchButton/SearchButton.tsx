@@ -13,6 +13,7 @@ const Button = styled.button`
   border: none;
   font: inherit;
   cursor: pointer;
+  background-color: white;
 `;
 
 const StyledSearchIcon = styled(SearchIcon)`
