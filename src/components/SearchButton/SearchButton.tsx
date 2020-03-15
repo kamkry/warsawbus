@@ -25,7 +25,7 @@ const StyledAccordionIcon = styled(AccordionIcon)`
 `;
 
 const SearchButton: React.FC = () => {
-  const [open, setOpen] = usePanelContext();
+  const [open, setOpen] = usePanelContext().open;
   return (
     <Button onClick={() => setOpen(!open)}>
       {open ? <StyledAccordionIcon /> : <StyledSearchIcon />}

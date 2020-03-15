@@ -11,7 +11,7 @@ const Container = styled.div<{ open: boolean }>`
 `;
 
 const LineSection: React.FC = () => {
-  const [open] = usePanelContext();
+  const [open] = usePanelContext().open;
   return (
     <Container open={open}>
       <LinesProvider>

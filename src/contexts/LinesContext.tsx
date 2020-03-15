@@ -5,7 +5,7 @@ interface LinesProps {
   bus: string[];
   tram: string[];
 }
-const initState = {
+const initState: LinesProps = {
   bus: [],
   tram: [],
 };

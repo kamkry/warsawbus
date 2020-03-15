@@ -6,13 +6,19 @@ import React, {
   useState,
 } from 'react';
 
-type UseState = [boolean, Dispatch<SetStateAction<boolean>>];
-const SearchPanelContext = createContext({} as UseState);
+interface SearchPanelContextProps {
+  open: [boolean, Dispatch<SetStateAction<boolean>>];
+  filter: [string, Dispatch<SetStateAction<string>>];
+}
+const SearchPanelContext = createContext({} as SearchPanelContextProps);
 
 export const SearchPanelProvider: React.FC = ({ children }) => {
-  const [open, setOpen] = useState(true);
+  const value = {
+    open: useState(true),
+    filter: useState(''),
+  };
   return (
-    <SearchPanelContext.Provider value={[open, setOpen]}>
+    <SearchPanelContext.Provider value={value}>
       {children}
     </SearchPanelContext.Provider>
   );

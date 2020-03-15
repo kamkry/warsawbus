@@ -22,10 +22,16 @@ const StyledInput = styled.input<{ open: boolean }>`
 `;
 
 const SearchInput: React.FC = () => {
-  const [open] = usePanelContext();
+  const [open] = usePanelContext().open;
+  const [filter, setFilter] = usePanelContext().filter;
   return (
     <InputWrapper>
-      <StyledInput placeholder="Wpisz linię..." open={open} />
+      <StyledInput
+        placeholder="Wpisz linię..."
+        open={open}
+        value={filter}
+        onChange={e => setFilter(e.target.value)}
+      />
     </InputWrapper>
   );
 };

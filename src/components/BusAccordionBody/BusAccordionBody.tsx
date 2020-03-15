@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 import styled from 'styled-components';
 import { useLinesContext } from 'contexts/LinesContext';
 import BusLineBadge from 'components/BusLineBadge';
+import { usePanelContext } from 'contexts/SearchPanelContext';
 
 const Panel = styled.div<{ open: boolean }>`
   max-height: ${({ open }) => (open ? 'calc(50% - 3rem)' : '0')};
@@ -22,11 +23,14 @@ interface BusAccordionBodyProps {
 
 const BusAccordionBody: React.FC<BusAccordionBodyProps> = ({ type, open }) => {
   const lines = useLinesContext();
+  const [filter] = usePanelContext().filter;
   return (
     <Panel open={open}>
-      {lines[type].map(b => (
-        <BusLineBadge key={uuid()} name={b} />
-      ))}
+      {lines[type]
+        .filter(l => l.startsWith(filter))
+        .map(b => (
+          <BusLineBadge key={uuid()} name={b} />
+        ))}
     </Panel>
   );
 };
