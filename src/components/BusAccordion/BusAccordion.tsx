@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { ReactComponent as Icon } from 'assets/accordionIcon.svg';
 import { useLinesContext } from 'contexts/LinesContext';
 import { v4 as uuid } from 'uuid';
 import BusAccordionBody from 'components/BusAccordionBody';
+import { usePanelContext } from 'contexts/SearchPanelContext';
 
 const AccordionButton = styled.button`
   background-color: #ebebeb;
@@ -30,7 +31,14 @@ export interface BusAccordionProps {
   type: 'bus' | 'tram';
 }
 const BusAccordion: React.FC<BusAccordionProps> = ({ type }) => {
-  const [accordionOpen, setAccordionOpen] = useState(true);
+  const [accordionOpen, setAccordionOpen] = useState(false);
+  const [filter] = usePanelContext().filter;
+
+  useEffect(() => {
+    if (filter) {
+      setAccordionOpen(true);
+    }
+  }, [filter]);
 
   return (
     <span>

@@ -27,7 +27,12 @@ const BusAccordionBody: React.FC<BusAccordionBodyProps> = ({ type, open }) => {
   return (
     <Panel open={open}>
       {lines[type]
-        .filter(l => l.startsWith(filter))
+        .filter(l =>
+          l
+            .toLowerCase()
+            .replace('-', '')
+            .startsWith(filter)
+        )
         .map(b => (
           <BusLineBadge key={uuid()} name={b} />
         ))}
