@@ -2,11 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { usePanelContext } from 'contexts/SearchPanelContext';
 
-interface LineSectionProps {
-  open: boolean;
-}
-
-const Container = styled.div<LineSectionProps>`
+const Container = styled.div<{ open: boolean }>`
   height: calc(100vh - 6rem);
   width: 15rem;
   background: white;

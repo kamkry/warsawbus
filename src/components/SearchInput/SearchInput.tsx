@@ -9,10 +9,7 @@ const InputWrapper = styled.div`
   align-items: center;
 `;
 
-interface SearchInputProps {
-  open: boolean;
-}
-const StyledInput = styled.input<SearchInputProps>`
+const StyledInput = styled.input<{ open: boolean }>`
   width: ${({ open }) => (open ? '12rem' : '0')};
   visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
   border: 0;

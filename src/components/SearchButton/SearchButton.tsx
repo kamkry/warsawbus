@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { usePanelContext } from 'contexts/SearchPanelContext';
-import { ReactComponent as SearchIcon } from '../../assets/search.svg';
-import { ReactComponent as AccordionIcon } from '../../assets/accordionIcon.svg';
+import { ReactComponent as SearchIcon } from 'assets/search.svg';
+import { ReactComponent as AccordionIcon } from 'assets/accordionIcon.svg';
 
 const Button = styled.button`
   display: flex;

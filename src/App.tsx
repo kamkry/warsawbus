@@ -1,6 +1,5 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import Map from 'components/Map';
 import SearchPanel from './components/SearchPanel';
 
 const GlobalStyle = createGlobalStyle`
