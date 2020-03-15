@@ -2,14 +2,14 @@ import React, {
   createContext,
   Dispatch,
   SetStateAction,
+  useContext,
   useState,
 } from 'react';
 
-type SetState = [boolean | undefined, Dispatch<SetStateAction<boolean>>] | null;
+type UseState = [boolean, Dispatch<SetStateAction<boolean>>];
+const SearchPanelContext = createContext({} as UseState);
 
-const SearchPanelContext = createContext(null as SetState);
-
-const SearchPanelProvider: React.FC = ({ children }) => {
+export const SearchPanelProvider: React.FC = ({ children }) => {
   const [open, setOpen] = useState(false);
   return (
     <SearchPanelContext.Provider value={[open, setOpen]}>
@@ -18,4 +18,5 @@ const SearchPanelProvider: React.FC = ({ children }) => {
   );
 };
 
-export default SearchPanelProvider;
+export const usePanelContext = () => useContext(SearchPanelContext);
+export default SearchPanelContext;
