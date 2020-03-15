@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: black;
   }
 `;
 
@@ -19,7 +20,6 @@ const App: React.FC = () => {
     <>
       <GlobalStyle />
       <SearchPanel />
-      <Map />
     </>
   );
 };
