@@ -10,7 +10,7 @@ const InputWrapper = styled.div`
 `;
 
 const StyledInput = styled.input<{ open: boolean }>`
-  width: ${({ open }) => (open ? '12rem' : '0')};
+  width: ${({ open }) => (open ? '15rem' : '0')};
   visibility: ${({ open }) => (open ? 'visible' : 'hidden')};
   border: 0;
   padding: 0;
