@@ -1,7 +1,9 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import axios from 'axios';
 import Bus, { BusProps } from 'components/Bus';
+import { useSelectedBusesContext } from 'contexts/SelectedBusesContext';
+import { LinesProps, useLinesContext } from 'contexts/LinesContext';
 
 function positionNotChanged(current: BusProps, previous: BusProps) {
   return (
@@ -25,8 +27,18 @@ function calculateRotation(bus: BusProps, lastBus: BusProps) {
   );
 }
 
-function getBusesLocation() {
-  return axios('/api/locations?type=1&line=109').then(res => res.data);
+function getBusesLocation(selected: Set<string>, lines: LinesProps) {
+  const promises = [...selected].map(line => {
+    const type = lines.bus.find(b => b === line) ? 1 : 2;
+    const url = `/api/locations?type=${type}&line=${line}`;
+    return axios.get(url).then(res => {
+      return res.data;
+    });
+  });
+
+  return Promise.all(promises).then(res => {
+    return res.flat();
+  });
 }
 /**
  * Calls the server and updates buses' rotation based on position change
@@ -50,23 +62,30 @@ function updateProperties(currentData: BusProps[], previousData: BusProps[]) {
 const Buses: React.FC = () => {
   const [data, setData] = useState([] as BusProps[]);
   const [previousData, setPreviousData] = useState([] as BusProps[]);
+  const [selected] = useSelectedBusesContext();
+  const lines = useLinesContext();
+
+  const update = useCallback(() => {
+    getBusesLocation(selected, lines).then(newData => {
+      const updated = updateProperties(newData, previousData);
+      setData(current => {
+        setPreviousData(current);
+        return updated;
+      });
+    });
+  }, [lines, previousData, selected]);
 
   useEffect(() => {
-    const update = () => {
-      getBusesLocation().then(newData => {
-        const updated = updateProperties(newData, previousData);
-        setData(current => {
-          setPreviousData(current);
-          return updated;
-        });
-      });
-    };
     if (!previousData.length) {
       update();
     }
     const interval = setInterval(update, 5_000);
     return () => clearInterval(interval);
-  }, [previousData]);
+  }, [lines, previousData, selected, update]);
+
+  useEffect(() => {
+    update();
+  }, [selected]); // eslint-disable-line
 
   if (!data) {
     return null;
@@ -77,7 +96,7 @@ const Buses: React.FC = () => {
         return (
           <Bus
             key={uuid()}
-            line="109"
+            line={vehicle.line}
             latitude={vehicle.latitude}
             longitude={vehicle.longitude}
             rotate={vehicle.rotate}

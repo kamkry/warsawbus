@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
-interface LinesProps {
+export interface LinesProps {
   bus: string[];
   tram: string[];
 }

@@ -15,10 +15,8 @@ const LineSection: React.FC = () => {
   const [open] = usePanelContext().open;
   return (
     <Container open={open}>
-      <LinesProvider>
         <BusAccordion type="bus" />
         <BusAccordion type="tram" />
-      </LinesProvider>
     </Container>
   );
 };
