@@ -37,6 +37,8 @@ const BusAccordion: React.FC<BusAccordionProps> = ({ type }) => {
   useEffect(() => {
     if (filter) {
       setAccordionOpen(true);
+    } else {
+      setAccordionOpen(false);
     }
   }, [filter]);
 
