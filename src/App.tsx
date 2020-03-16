@@ -9,8 +9,11 @@ const GlobalStyle = createGlobalStyle`
   *, *::before, *::after{
     box-sizing: border-box;
   }
-  body{
+  html, body{
     margin: 0;
+    max-height: 100%;
+    overflow: hidden;
+    
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: Roboto,serif;

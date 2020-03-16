@@ -6,12 +6,11 @@ import LineSection from 'components/LineSection';
 import SelectedBusSection from 'components/SelectedBusSection';
 
 const StyledPanel = styled.div`
-  position: absolute;
+  position: fixed;
   margin: 1rem;
   z-index: 1;
   display: grid;
   grid-gap: 1rem;
-  max-width: fit-content;
 
   grid-template-columns: 18rem 7rem;
   pointer-events: none;
