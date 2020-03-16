@@ -7,6 +7,9 @@ const StyledBar = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  max-width: fit-content;
+
+  pointer-events: auto;
 `;
 
 const SearchBar: React.FC = () => {

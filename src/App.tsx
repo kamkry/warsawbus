@@ -2,6 +2,7 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { SelectedBusesProvider } from 'contexts/SelectedBusesContext';
 import SearchPanel from './components/SearchPanel';
+import Map from './components/Map';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after{
@@ -21,7 +22,7 @@ const App: React.FC = () => {
     <SelectedBusesProvider>
       <GlobalStyle />
       <SearchPanel />
-      {/* <Map /> */}
+      <Map />
     </SelectedBusesProvider>
   );
 };

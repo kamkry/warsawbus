@@ -11,8 +11,10 @@ const StyledPanel = styled.div`
   z-index: 1;
   display: grid;
   grid-gap: 1rem;
+  max-width: fit-content;
 
   grid-template-columns: 18rem 7rem;
+  pointer-events: none;
 `;
 
 const SearchPanel = () => {

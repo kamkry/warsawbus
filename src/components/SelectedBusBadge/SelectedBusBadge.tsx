@@ -18,6 +18,7 @@ const Badge = styled.button`
   text-align: center;
   margin: 0 1rem 1rem 0;
   cursor: pointer;
+  pointer-events: auto;
 `;
 
 const Label = styled.div`

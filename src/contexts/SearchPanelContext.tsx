@@ -14,7 +14,7 @@ const SearchPanelContext = createContext({} as SearchPanelContextProps);
 
 export const SearchPanelProvider: React.FC = ({ children }) => {
   const value = {
-    open: useState(true),
+    open: useState(false),
     filter: useState(''),
   };
   return (
