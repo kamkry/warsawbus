@@ -7,11 +7,10 @@ import { usePanelContext } from 'contexts/SearchPanelContext';
 
 const Panel = styled.div<{ open: boolean }>`
   max-height: ${({ open }) => (open ? 'calc(50% - 3rem)' : '0')};
+  padding: ${({ open }) => (open ? '1rem' : '0')} 1rem;
   background-color: white;
   overflow: scroll;
-  padding: ${({ open }) => (open ? '1rem' : 0)} 1rem;
-
-  transition: max-height 0.15s ease-out, padding 0s ease-out 0.15s;
+  transition: all 0.15s ease-out;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
