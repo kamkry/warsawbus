@@ -1,7 +1,7 @@
-# WarsawBus
+# WarsawBus ![https://i.imgur.com/becWmJl.png](https://i.imgur.com/becWmJl.png)
+
 
 Find your bus or tram in Warsaw. [Try it out!](https://warsawbus.now.sh)
-
 ---
 
 ### Screenshots
