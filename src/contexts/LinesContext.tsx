@@ -17,6 +17,8 @@ export const LinesProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     axios.get('/api/lines').then(res => {
+      res.data.bus.sort();
+      res.data.tram.sort();
       setLines(res.data);
     });
   }, []);

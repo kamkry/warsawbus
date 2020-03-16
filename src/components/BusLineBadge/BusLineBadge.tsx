@@ -11,6 +11,7 @@ const Badge = styled.button<{ selected: boolean }>`
   color: ${({ selected }) => (selected ? 'white' : 'black')};
   border: ${({ selected }) => (selected ? 'none' : '1px solid #b5b5b5')};
   font-size: 1rem;
+  cursor: pointer;
 `;
 
 interface BusLineBadgeProps {
@@ -18,7 +19,6 @@ interface BusLineBadgeProps {
 }
 const BusLineBadge: React.FC<BusLineBadgeProps> = ({ name }) => {
   const [selected, toggle] = useSelectedBusesContext();
-
   return (
     <Badge selected={selected.has(name)} onClick={() => toggle(name)}>
       {name}
