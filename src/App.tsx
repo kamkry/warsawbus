@@ -1,5 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+import { SelectedBusesProvider } from 'contexts/SelectedBusesContext';
 import SearchPanel from './components/SearchPanel';
 
 const GlobalStyle = createGlobalStyle`
@@ -17,10 +18,11 @@ const GlobalStyle = createGlobalStyle`
 
 const App: React.FC = () => {
   return (
-    <>
+    <SelectedBusesProvider>
       <GlobalStyle />
       <SearchPanel />
-    </>
+      {/* <Map /> */}
+    </SelectedBusesProvider>
   );
 };
 
