@@ -1,5 +1,3 @@
-# README
-
 # WarsawBus
 
 Find your bus or tram in Warsaw. [Try it out!](https://warsawbus.now.sh)
