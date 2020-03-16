@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MapBox from 'react-map-gl';
-import Buses from '../Buses';
+import Buses from 'components/Buses';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const Map: React.FC = () => {
