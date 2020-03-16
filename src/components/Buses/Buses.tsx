@@ -76,9 +76,6 @@ const Buses: React.FC = () => {
   }, [lines, previousData, selected]);
 
   useEffect(() => {
-    if (!previousData.length) {
-      update();
-    }
     const interval = setInterval(update, 5_000);
     return () => clearInterval(interval);
   }, [lines, previousData, selected, update]);
