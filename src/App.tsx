@@ -1,5 +1,6 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
+import Map from 'components/Map';
 import SearchPanel from './components/SearchPanel';
 
 const GlobalStyle = createGlobalStyle`
@@ -10,7 +11,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: black;
     font-family: Roboto,serif;
   }
 `;
@@ -20,6 +20,7 @@ const App: React.FC = () => {
     <>
       <GlobalStyle />
       <SearchPanel />
+      <Map />
     </>
   );
 };
