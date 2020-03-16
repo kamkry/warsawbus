@@ -1,7 +1,9 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
-import Map from 'components/Map';
+import { SelectedBusesProvider } from 'contexts/SelectedBusesContext';
+import { LinesProvider } from 'contexts/LinesContext';
 import SearchPanel from './components/SearchPanel';
+import Map from './components/Map';
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after{
@@ -17,11 +19,13 @@ const GlobalStyle = createGlobalStyle`
 
 const App: React.FC = () => {
   return (
-    <>
-      <GlobalStyle />
-      <SearchPanel />
-      <Map />
-    </>
+    <LinesProvider>
+      <SelectedBusesProvider>
+        <GlobalStyle />
+        <SearchPanel />
+        <Map />
+      </SelectedBusesProvider>
+    </LinesProvider>
   );
 };
 

@@ -20,6 +20,7 @@ const AccordionButton = styled.button`
   font-size: 1rem;
   color: #707070;
   -webkit-appearance: none;
+  cursor: pointer;
 `;
 
 const AccordionIcon = styled(Icon)<{ open: boolean }>`
